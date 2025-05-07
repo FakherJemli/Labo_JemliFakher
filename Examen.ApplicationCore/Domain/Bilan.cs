@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Examen.ApplicationCore.Domain
+﻿namespace Examen.ApplicationCore.Domain
 {
     public class Bilan
     {
-        public string CodeInfirmier { get; set; }
-        public string CodePatient { get; set; }
         public DateTime DatePrelevement { get; set; }
+        public string EmailMedecin { get; set; }
+        public bool Paye { get; set; }
 
-        // Foreign keys
-        public int AnalyseId { get; set; }
+        // 1 infirmer
+        public Infirmier Infirmier { get; set; }
 
-        // Navigation properties
-        public virtual Infirmier Infirmier { get; set; }
-        public virtual Patient Patient { get; set; }
-        public virtual Analyse Analyse { get; set; }
+        //1 patient
+        public Patient Patient { get; set; }
+
+        //many analyses
+        public ICollection<Analyse> Analyses { get; set; }
+
+        // Propriétés pour les clés étrangères
+        public int InfirmierId { get; set; }
+        public string CodePatient { get; set; }
     }
 }

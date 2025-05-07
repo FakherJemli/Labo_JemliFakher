@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Examen.ApplicationCore.Domain
 {
@@ -12,18 +7,17 @@ namespace Examen.ApplicationCore.Domain
         Hematologie,
         Biochimie,
         Autre
-
     }
     public class Infirmier
     {
-        [Key]
-        [StringLength(5, ErrorMessage = "Le code infirmier doit avoir exactement 5 caractères")]
-        public string CodeInfirmier { get; set; }
+        public int InfirmierId { get; set; }
+        public string NomComplet { get; set; }
+        public Specialite Specialite { get; set; }
 
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
+        // many bilans
+        public ICollection<Bilan> Bilans { get; set; }
 
-        // Navigation properties
-        public virtual ICollection<Bilan> Bilans { get; set; }
+        //many patients
+        public ICollection<Patient> Patients { get; set; }
     }
 }
